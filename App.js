@@ -6,85 +6,166 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React,{useState} from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
   ScrollView,
   View,
   Text,
   StatusBar,
+  Image,
+  FlatList
 } from 'react-native';
-
+import {styles} from './component/style'
 import Fontsize from './component/fontssize';
 
-const App= () => {
+
+var DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'First Item',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Second Item',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Third Item',
+  },
+  {
+    id: '4',
+    title: '4 Item',
+  },
+  {
+    id: '5',
+    title: '5 Item',
+  },
+  {
+    id: '6',
+    title: '6 Item',
+  },
+  {
+    id: '7',
+    title: '7 Item',
+  },
+];
+
+function Item({ title }) {
   return (
-  <View style={styles.ketengah}>
-    <StatusBar backgroundColor={'#ce66fa'}/>
-    <View
-     style={{
-       flex:1,
-       paddingHorizontal:25,
-     }}
-    >
-      <View 
-        style={{
-          height:250,
-          backgroundColor:'white',
-          position:'relative',
-          top:50,
-          shadowColor:'black',
-          shadowOpacity:1,
-          shadowOffset:10,
-          shadowRadius:2,
-          borderColor:"#ce66fa",
-          borderWidth:1,
-          borderRadius:15,
-          zIndex:1,
-          paddingVertical:5,
-          // paddingHorizontal:10
-        }}
-      >
-        <View
-          style={{
-            flexDirection:"row",
-            justifyContent:'space-between',
-            borderBottomColor:'#ce66fa',
-            borderBottomWidth:1,
-            paddingHorizontal:10
-          }}
-        >
-          <Fontsize>
-            Hai,Dino
-          </Fontsize>
-          <Fontsize>
-            Rp. 172.456
-          </Fontsize>
-        </View>
-      </View>
+    <View style={styles.item}>
+      <Text style={styles.title}>{title}</Text>
     </View>
-    <View
+  );
+}
+
+
+const App= () => {
+  const onRefresh1=()=>{
+    setrefresh(true)
+    console.log('masuk refresh')
+    setTimeout(() => {
+      console.log('selesai')
+      DATA.push({
+        id:'100',
+        title:'isi seratus'
+      })
+      setrefresh(false)
+    }, 3000);
+  }
+  const [refresh,setrefresh]=useState(false)
+
+  return (
+    
+    <SafeAreaView
       style={{
-        flex:2,
-        backgroundColor:'white'
+        flex:1
       }}
     >
+      <View
+        style={{
+          height:300,
+          width:'100%',
+          // borderWidth:1
+        }}
+      >
+        <Image style={{
+          flex:1,
+          height:null,
+          width:null,
+          resizeMode:'cover'
+        }} source={{uri:'https://cdn.dribbble.com/users/3090408/screenshots/6061073/pikachu-dribble.gif'}}/>
+      </View>
+      {/* <FlatList
+        onRefresh={onRefresh1}
+        refreshing={refresh}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        initialScrollIndex={4}
+        data={DATA}
+        renderItem={({ item }) => <Item title={item.title} />}
+        keyExtractor={item => item.id}
+      /> */}
+    </SafeAreaView>
 
-    </View>
+  // <View style={styles.ketengah}>
+  //   <StatusBar backgroundColor={'#ce66fa'}/>
+  //   <ScrollView>
 
+  //     <View
+  //       style={{
+  //         flex:1,
+  //         paddingHorizontal:25,
+  //       }}
+  //     >
+  //       <View 
+  //         style={{
+  //           height:250,
+  //           backgroundColor:'white',
+  //           position:'relative',
+  //           top:50,
+  //           shadowColor:'black',
+  //           shadowOpacity:1,
+  //           shadowOffset:10,
+  //           shadowRadius:2,
+  //           borderColor:"#ce66fa",
+  //           borderWidth:1,
+  //           borderRadius:15,
+  //           zIndex:1,
+  //           paddingVertical:5,
+  //           // paddingHorizontal:10
+  //         }}
+  //       >
+  //         <View
+  //           style={{
+  //             flexDirection:"row",
+  //             justifyContent:'space-between',
+  //             borderBottomColor:'#ce66fa',
+  //             borderBottomWidth:1,
+  //             paddingHorizontal:10
+  //           }}
+  //         >
+  //           <Fontsize>
+  //             Hai,Dino
+  //           </Fontsize>
+  //           <Fontsize>
+  //             Rp. 172.456
+  //           </Fontsize>
+  //         </View>
+  //       </View>
+  //     </View>
+  //     <View
+  //       style={{
+  //         flex:2,
+  //         backgroundColor:'white'
+  //       }}
+  //     >       
+      //  </View>
+      // </ScrollView> 
 
-  </View>
+  // </View>
   );
 };
 
-const styles = StyleSheet.create({
-  ketengah:{
-    flex:1,
-    // alignItems:'center',
-    // justifyContent:'center',
-    backgroundColor:'#ce66fa',
-  }
-});
 
 export default App;
