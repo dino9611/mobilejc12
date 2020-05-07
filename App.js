@@ -18,8 +18,10 @@ import {
 } from 'react-native';
 import {styles} from './component/style'
 import Fontsize from './component/fontssize';
-
-
+// import {Icon} from 'native-base'
+import {Avatar} from 'react-native-elements'
+import { Button,CheckBox,Divider,Header,Input,Icon } from 'react-native-elements';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 var DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -74,39 +76,79 @@ const App= () => {
     }, 3000);
   }
   const [refresh,setrefresh]=useState(false)
-
+  const [checked,setchecked]=useState(false)
+  const [visible,setvisible]=useState(true)
   return (
     
-    <SafeAreaView
+    <View
       style={{
-        flex:1
+        flex:1,
       }}
     >
-      <View
-        style={{
-          height:300,
-          width:'100%',
-          // borderWidth:1
-        }}
-      >
-        <Image style={{
-          flex:1,
-          height:null,
-          width:null,
-          resizeMode:'cover'
-        }} source={{uri:'https://cdn.dribbble.com/users/3090408/screenshots/6061073/pikachu-dribble.gif'}}/>
-      </View>
-      {/* <FlatList
-        onRefresh={onRefresh1}
-        refreshing={refresh}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        initialScrollIndex={4}
-        data={DATA}
-        renderItem={({ item }) => <Item title={item.title} />}
-        keyExtractor={item => item.id}
-      /> */}
-    </SafeAreaView>
+     
+        <Header
+          containerStyle={{padding:0}}
+          leftComponent={{ icon: 'menu', color: '#fff' }}
+          centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
+          rightComponent={{ icon: 'home', color: '#fff' }}
+        />
+
+        <Button
+          title="Outline button"
+          type="outline"
+        />
+        <Button
+          icon={
+            <Icon
+              name="arrow-right"
+              size={15}
+              color="white"
+            />
+          }
+          title="Button with icon component"
+        />
+        <Button
+          containerStyle={{
+            width:50,
+            height:100,
+            margin:3
+          }}
+          buttonStyle={{
+            backgroundColor:'black'
+          }}
+          title="Loading button"
+          loading
+        />
+        <CheckBox
+          checkedIcon='dot-circle-o'
+          uncheckedIcon='circle-o'
+          title='show password'
+          onPress={()=>setchecked(!checked)}
+          checked={checked}
+        />
+        <Input
+          placeholder='password'
+          secureTextEntry={visible}
+          leftIcon={<Icon name='lock' color='blue' size={24}/>}
+          rightIcon={
+            <Icon 
+              name={visible ? 'visibility':'visibility-off' }
+              size={24}
+              onPress={()=>setvisible(!visible)}
+              color={visible?'blue':'gray'}
+            />
+          }
+
+        />
+        {/* <Divider style={{ backgroundColor: 'blue' }} /> */}
+       {/* <Avatar
+          rounded
+          icon={{name: 'home'}}
+          onPress={() => console.log("Works!")}
+          activeOpacity={0.7}
+          containerStyle={{flex: 2, marginLeft: 20, marginTop: 115}}
+        /> */}
+    </View>
 
   // <View style={styles.ketengah}>
   //   <StatusBar backgroundColor={'#ce66fa'}/>
@@ -145,7 +187,7 @@ const App= () => {
   //             paddingHorizontal:10
   //           }}
   //         >
-  //           <Fontsize>
+  //           <Fontsize besarhuruf=20>
   //             Hai,Dino
   //           </Fontsize>
   //           <Fontsize>

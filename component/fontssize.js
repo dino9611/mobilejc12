@@ -1,12 +1,12 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-const Fontsize=({children})=>{
+const Fontsize=({children,besarhuruf})=>{
 
     return(
         <Text
             style={{
-                fontSize:20,
+                fontSize:besarhuruf,
                 fontWeight:'bold'
             }}
         >
